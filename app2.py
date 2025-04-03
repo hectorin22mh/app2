@@ -1,7 +1,7 @@
 import streamlit as st
 import yfinance as yf
 import plotly.graph_objects as go
-from google import genai
+import google.generativeai as genai
 import requests
 from PIL import Image
 from io import BytesIO
