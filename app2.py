@@ -134,10 +134,9 @@ def get_investment_recommendation(symbol, last_price, day_high, day_low, market_
         - Usa lenguaje técnico, pero comprensible para personas con conocimientos intermedios en finanzas.
         """
 
-        client = genai.Client(api_key=tokenAI)
-        response = client.models.generate_content(
-            model="gemini-2.0-flash", contents=prompt
-        )
+        genai.configure(api_key=tokenAI)
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        response = model.generate_content(prompt)
         return response.text.strip()
     except Exception:
         return "No se pudo generar una recomendación en este momento."
