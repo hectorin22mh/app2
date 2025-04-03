@@ -83,6 +83,17 @@ def get_investment_recommendation(symbol, last_price, day_high, day_low, market_
         min_close = history['Close'].min()
         avg_volume = int(history['Volume'].mean())
 
+<<<<<<< HEAD
+=======
+        beta = stock.info.get("beta", None)
+        risk_free_rate = 0.04  # Tasa libre de riesgo aproximada (bono a 10 años USA)
+        market_return = 0.08   # Rentabilidad promedio del mercado (S&P500)
+
+        capm_estimate = None
+        if beta is not None:
+            capm_estimate = risk_free_rate + beta * (market_return - risk_free_rate)
+
+>>>>>>> 43828ec (Primer commit de mi app)
         # Construir resumen para el prompt
         metrics_summary = f"""
         Análisis histórico del activo {symbol} (últimos 12 meses):
@@ -93,6 +104,15 @@ def get_investment_recommendation(symbol, last_price, day_high, day_low, market_
         - Volumen promedio: {avg_volume:,}
         """
 
+<<<<<<< HEAD
+=======
+        if beta is not None and capm_estimate is not None:
+            metrics_summary += f"""
+            - Beta estimada: {beta:.2f}
+            - CAPM estimado (Rentabilidad esperada): {capm_estimate:.2%}
+            """
+
+>>>>>>> 43828ec (Primer commit de mi app)
         # Prompt con base en datos reales
         prompt = f"""
         Eres un analista financiero experto en análisis de riesgos de inversión. Tu especialidad es evaluar el riesgo-retorno de activos financieros a nivel global.
@@ -111,6 +131,10 @@ def get_investment_recommendation(symbol, last_price, day_high, day_low, market_
         Tu análisis debe incluir:
         - Un resumen del nivel de riesgo del activo.
         - Un reporte claro con hallazgos clave.
+<<<<<<< HEAD
+=======
+        - Un análisis estimado del CAPM (Capital Asset Pricing Model) basado en el riesgo sistemático del activo.
+>>>>>>> 43828ec (Primer commit de mi app)
         - Una recomendación diferenciada para tres perfiles de inversionista: conservador, moderado y agresivo.
 
         🚨 Restricciones:
