@@ -4,3 +4,6 @@ yfinance
 numpy
 matplotlib
 plotly
+requests
+Pillow
+google-generativeai
