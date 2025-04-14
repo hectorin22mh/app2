@@ -8,9 +8,9 @@ from io import BytesIO
 import matplotlib.pyplot as plt
 
 ################################################
-tokenAI = "AIzaSyDjFAIJkM_2TIlJOTG_rmj7mS6f8IVWG-s"
-newsapi_key = "37ffbda3cc344807a16071a59798dedd"
-#################################################
+tokenAI = st.secrets["tokenAI"]
+newsapi_key = st.secrets["newsapi_key"]
+################################################
 
 def translate_with_gemini(text):
     try:
