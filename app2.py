@@ -280,9 +280,12 @@ if ticker:
             except Exception:
                 pass
         
-        if 'longBusinessSummary' in info:
-            translated_text = translate_with_gemini(info['longBusinessSummary'])
-            st.markdown(f"<div class='summary'>{translated_text}</div>", unsafe_allow_html=True)
+        if 'longBusinessSummary' in info and info['longBusinessSummary']:
+            try:
+                translated_text = translate_with_gemini(info['longBusinessSummary'])
+                st.markdown(f"<div class='summary'>{translated_text}</div>", unsafe_allow_html=True)
+            except Exception:
+                st.markdown(f"<div class='summary'>{info['longBusinessSummary']}</div>", unsafe_allow_html=True)
 
         # Mover el bloque del sitio web aquí
         if 'website' in info and info['website']:
