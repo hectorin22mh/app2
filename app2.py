@@ -232,13 +232,19 @@ if ticker:
             unsafe_allow_html=True
         )
 
+        market_cap_str = f"${market_cap:,.0f}" if isinstance(market_cap, (int, float)) else "N/D"
+        volume_str = f"{volume:,}" if isinstance(volume, (int, float)) else "N/D"
+
         st.markdown(
-            """
+            f"""
             <div style='text-align: center; font-size: 18px; margin-bottom: 10px;'>
-                <strong>Último:</strong> {:.2f} USD | <strong>Máximo:</strong> {:.2f} USD | <strong>Mínimo:</strong> {:.2f} USD | 
-                <strong>Market Cap:</strong> ${:,} | <strong>Volumen:</strong> {:,}
+                <strong>Último:</strong> {last_price:.2f} USD | 
+                <strong>Máximo:</strong> {day_high:.2f} USD | 
+                <strong>Mínimo:</strong> {day_low:.2f} USD | 
+                <strong>Market Cap:</strong> {market_cap_str} | 
+                <strong>Volumen:</strong> {volume_str}
             </div>
-            """.format(last_price, day_high, day_low, market_cap, volume),
+            """,
             unsafe_allow_html=True
         )
 
