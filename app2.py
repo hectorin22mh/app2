@@ -71,7 +71,7 @@ def fetch_stock_data(symbol, period, full_history=False):
         day_low = history.iloc[-1]['Low']  # Mínimo del día
         return last_price, percent_change, market_cap, volume, day_high, day_low
     except Exception:
-        return None, None, None, None
+        return None, None, None, None, None, None
 
 def get_investment_recommendation(symbol, last_price, day_high, day_low, market_cap, volume):
     try:
