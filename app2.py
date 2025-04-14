@@ -16,11 +16,17 @@ def translate_with_gemini(text):
     try:
         client = genai.Client(api_key=tokenAI)
         response = client.models.generate_content(
-            model="gemini-2.0-flash", contents=f"Traduce al español este texto sin encabezado ni introducción, solo la traducción directa: {text}"
+            model="gemini-2.0-flash",
+            contents=f"Traduce al español este texto sin encabezado ni introducción, solo la traducción directa: {text}"
         )
-        return response.text.strip()
+        if hasattr(response, "text") and response.text:
+            return response.text.strip()
+        elif hasattr(response, "candidates"):
+            return response.candidates[0].content.parts[0].text.strip()
+        else:
+            return text
     except Exception:
-        return text  # En caso de error, devolver el texto original
+        return text
 
 def get_similar_tickers(ticker):
     all_tickers = yf.Ticker("AAPL").history(period="1d").index  # Listado de tickers disponibles
